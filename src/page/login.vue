@@ -4,13 +4,13 @@
       <div class="user-name">
         <div class="lee-4">用户名:</div>
         <div>
-          <el-input v-model="username" placeholder="用户名"></el-input>
+          <el-input v-model="username" placeholder="随意输入就可以提交"></el-input>
         </div>
       </div>
       <div class="pass">
         <div class="lee-4">密码:</div>
         <div>
-          <el-input type="password" v-model="password" maxlength="20" placeholder="密码"></el-input>
+          <el-input type="password" v-model="password" maxlength="20" placeholder="随意输入就可以提交"></el-input>
         </div>
       </div>
       <div class="login">
@@ -29,7 +29,16 @@ export default {
   },
   methods: {
     fnLogin () {
-      this.$router.push('./home')
+      console.log(this.username.length)
+      if (this.username.length < 1) {
+        this.$message.error('不要这么抠门好嚒，账号里面一个字都不写就想登陆')
+        return
+      }
+      if (this.password.length < 1) {
+        this.$message.error('不要这么抠门好嚒，你家的密码是空的嚒？')
+        return
+      }
+      this.$router.push('./home/index')
     }
   }
 }
@@ -38,6 +47,7 @@ export default {
 <style scoped>
 .login {
   padding-top: 40px;
+  text-align: center;
 }
 .login-btn{
   padding-left: 28px;
